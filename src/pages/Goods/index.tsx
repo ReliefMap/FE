@@ -151,9 +151,10 @@ export default function Goods() {
 
   return (
     <div className="relative w-full h-screen">
-      <div className="absolute top-0 left-0 w-full h-16 p-4 z-10 flex justify-between items-center bg-white shadow-md">
-        <h1 className="text-xl font-semibold">구호물품</h1>
-        <div className="flex gap-2">
+      {/* 상단 바 */}
+      <div className="absolute top-0 left-0 w-full h-16 p-4 z-10 flex justify-between items-center bg-[#fffdf6] shadow-md">
+        <h1 className="text-xl font-semibold text-[#191600]">구호물품</h1>
+        <div className="flex gap-2 text-[#191600]">
           <button onClick={() => setFilterOpen(true)}>
             <Filter size={20} />
           </button>
@@ -161,13 +162,17 @@ export default function Goods() {
         </div>
       </div>
 
+      {/* 지도 영역 */}
       <div ref={mapRef} className="absolute top-16 left-0 w-full bottom-16" />
 
+      {/* 바텀 시트 */}
       <BottomSheet
         open={open}
         onClose={() => setOpen(false)}
         locationName={locationName}
       />
+
+      {/* 필터 시트 */}
       <FilterSheet
         open={filterOpen}
         onClose={() => setFilterOpen(false)}

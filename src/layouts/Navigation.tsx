@@ -11,8 +11,8 @@ const Navigation = () => {
   
   return (
     <section className="fixed w-full h-16 bottom-0">
-      <nav className="bg-white w-full h-16 mx-auto flex items-center justify-between rounded-t-lg">
-        <div className="w-full max-w-5xl mx-auto px-11 flex items-center justify-between">
+      <nav className="bg-[#fffdf6] w-full h-16 mx-auto flex items-center justify-between rounded-t-lg">
+        <div className="w-full max-w-5xl mx-auto px-11 flex items-center justify-between text-[#191600]">
           <NavigationButton
             Icon={HiOutlineHome}
             title="홈"
