@@ -18,3 +18,15 @@ export type DateBarProps = {
   onOpen: () => void;
   onClear: () => void;
 };
+
+export type TimeProps = {
+  date?: string;
+  time?: string;
+};
+
+export type DateSheetProps = {
+  open: boolean;
+  onClose: () => void;
+  onApply: (v: TimeProps) => void;
+  initial?: TimeProps;
+};
