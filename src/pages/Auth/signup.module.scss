@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+/* ================================
+   공통 설정
+   ================================ */
+* {
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 24px;
+  text-align: center;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* ================================
+   배경 & 패널
+   ================================ */
+.bg {
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #3b82f6 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.panel {
+  background: #fffdf6;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
+  padding: 48px 64px 36px;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================================
+   스텝 바
+   ================================ */
+.stepBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 80px;
+}
+
+.stepItem:not(:last-child) {
+  margin-right: 60px;
+}
+
+.stepItem .circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid #3b82f6;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.stepItem .circle.done {
+  background: #3b82f6;
+  color: white;
+}
+
+.stepItem .circle.active {
+  border-width: 3px;
+  background: white;
+}
+
+.stepItem .line {
+  flex: 1;
+  height: 4px;
+  background-color: #ddd;
+  margin: 0 8px;
+  align-self: center;
+}
+
+.stepItem .line.filled {
+  background: #3b82f6;
+}
+
+.stepItem .label {
+  margin-top: 12px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #666;
+}
+
+.stepItem .label.labelActive {
+  font-weight: bold;
+  color: #333;
+}
+
+/* ================================
+   폼 요소
+   ================================ */
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: #444;
+  font-size: .95rem;
+  font-weight: 600;
+  margin: 6px 0 4px;
+}
+
+/* ================================
+   입력 필드
+   ================================ */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f4f6;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: .2s ease;
+}
+
+.field:focus-within {
+  background: #fff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, .25);
+}
+
+.fieldError {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .18);
+}
+
+.input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #111;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.iconLeft {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.iconRightBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.iconRightBtn:hover {
+  color: #111;
+}
+
+/* ================================
+   에러 및 힌트 메시지
+   ================================ */
+.helpRow {
+  min-height: 18px;
+  margin: 0 2px 6px;
+}
+
+.msgError {
+  color: #ef4444;
+  font-size: .85rem;
+}
+
+.msgHint {
+  color: #9ca3af;
+  font-size: .85rem;
+}
+
+.globalMsg {
+  color: #FF4D4F;
+  font-size: .95em;
+  min-height: 20px;
+  margin-top: 8px;
+}
+
+/* ================================
+   제출 버튼
+   ================================ */
+.submitBtn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.submitBtn:hover {
+  background: #059669;
+}
+
+.submitBtn:disabled {
+  background: #6ee7b7;
+  cursor: not-allowed;
+  opacity: .9;
+}
+
+/* 인증번호 버튼 */
+.codeBtn {
+  margin-left: 8px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.codeBtn:hover {
+  background: #2563eb;
+}
+
+/* ================================
+   약관 동의
+   ================================ */
+.termsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 2px 0;
+  font-size: .92rem;
+  color: #333;
+}
+
+.termsRow input {
+  width: 16px;
+  height: 16px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .96rem;
+  color: #111827;
+}
+
+.checkRow input {
+  width: 18px;
+  height: 18px;
+}
+
+.requiredMark {
+  color: #ef4444;
+  font-style: normal;
+  margin-left: 2px;
+}
+
+/* 구분선 */
+.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 18px 0;
+}
+
+/* ================================
+   연령대 선택 (라디오 카드)
+   ================================ */
+.sectionTitle {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 18px 0 8px;
+  color: #1f2937;
+}
+
+.fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.ageGroupRadios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.radioItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  transition: .2s;
+  text-align: left;
+  cursor: pointer;
+}
+
+.radioItem input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.radioVisual {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid #9ca3af;
+  box-shadow: inset 0 0 0 4px transparent;
+  transition: .2s;
+  margin-right: 8px;
+}
+
+.radioTextMain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.radioTextSub {
+  color: #6b7280;
+  font-size: .9rem;
+}
+
+.radioItem:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 2px 10px rgba(59,130,246,.08);
+}
+
+.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+.selected .radioVisual {
+  border-color: #3b82f6;
+  box-shadow: inset 0 0 0 6px #3b82f6;
+}
+
+.radioItem:focus-within {
+  box-shadow: 0 0 0 3px rgba(96,165,250,.25);
+  border-color: #60a5fa;
+}
+
+/* ================================
+   하단 링크
+   ================================ */
+.bottomLinks {
+  margin-top: 12px;
+  font-size: .92rem;
+}
+
+.bottomLinks a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.bottomLinks a:hover {
+  color: #1d4ed8;
+}
+
+.loginBtnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.loginBtn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 14px;
+  cursor: pointer;
+  transition: background .2s;
+  width: 100%; // 원하는 경우 조절
+  max-width: 180px;
+}
+
+.loginBtn:hover {
+  background: #059669;
+}
+
+.completeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 0;
+}
+
+.completeTitle {
+  font-family: 'Pretendard', 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #111827;
+  text-align: center;
+}
+
+.firecrackerImage {
+  width: 250px;
+  height: auto;
+  margin-top: -8px;
+}
+
+.loginBtnWrapper {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loginBtn {
+  background: #10b981;
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.loginBtn:hover {
+  background: #059669;
+}
+
+
+/* ================================
+   반응형 대응
+   ================================ */
+@media (max-width: 420px) {
+  .panel {
+    padding: 36px 20px 28px;
+  }
+}

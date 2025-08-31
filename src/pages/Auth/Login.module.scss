@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+/* ===== 배경 / 패널 ===== */
+.loginBg {
+    background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 40%, #3b82f6 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginPanel {
+    background: #fffdf6;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .18);
+    padding: 48px 64px 36px;
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== 타이틀 ===== */
+.loginTitle {
+    font-family: 'Open Sans', 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #191600;
+    margin-bottom: 44px;
+    letter-spacing: .01em;
+}
+
+/* ===== 폼 공통 ===== */
+.loginForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* (중요) 기본 인풋 스타일은 '직계 자식'만 적용 -> .field 내부 input에는 적용되지 않음 */
+.loginForm>input {
+    background: #f7f7f7;
+    border: 1.5px solid #ccc;
+    color: #222;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    outline: none;
+    transition: border .2s, background .2s;
+}
+
+.loginForm>input:focus {
+    border-color: #60a5fa;
+    background: #fff;
+}
+
+.loginLabel {
+    color: #666;
+    font-size: .95rem;
+    margin-bottom: 4px;
+    text-align: left;
+}
+
+/* ===== 버튼 ===== */
+.loginBtn {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.loginBtn:hover {
+    background: #2563eb;
+}
+
+.errorText {
+    color: #FF4D4F;
+    font-size: .95em;
+    margin-top: 8px;
+    min-height: 20px;
+}
+
+/* ===== 가입/재설정 ===== */
+.links {
+    display: flex;
+    flex-direction: column;
+    /* 세로 배치 */
+    align-items: center;
+    /* 버튼은 가운데 */
+    width: 100%;
+    margin-top: 18px;
+    font-size: 0.92rem;
+    gap: 10px;
+}
+
+/* 회원가입 버튼 */
+.linkBtn {
+    background: #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    color: #111;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.linkBtn:hover {
+    background: #d1d5db;
+}
+
+/* 비밀번호 재설정 */
+.linkText {
+    align-self: flex-end;
+    margin-left: 4px;
+    color: #6b7280;
+    text-decoration: underline;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.linkText:hover {
+    color: #111;
+}
+
+
+/* ===== 소셜 ===== */
+.socialSection {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.socialTitle {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.socialButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.socialBtn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    img {
+        width: 20px;
+        height: 20px;
+    }
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}
+
+.google {
+    background-color: #DB4437;
+}
+
+.kakao {
+    background-color: #FEE500;
+    color: #191600;
+
+    img {
+        background-color: transparent;
+    }
+}
+
+.naver {
+    background-color: #03C75A;
+}
+
+/* ===== 아이콘-내장 인풋(.field) ===== */
+/* 아이콘이 '인풋 안'에 들어오도록, 테두리는 .field가 담당 */
+.field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f4f6;
+    border: 1.5px solid #d1d5db;
+    border-radius: 12px;
+    padding: 10px 12px;
+    transition: .2s ease;
+}
+
+.field:focus-within {
+    background: #fff;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, .25);
+}
+
+/* 기존 .field 그대로 두고, 에러 상태만 추가 */
+.fieldError{
+  border-color:#ef4444 !important;            /* red-500 */
+  box-shadow:0 0 0 3px rgba(239,68,68,.18);   /* red glow */
+}
+
+/* 인풋 하단 메시지 라인 */
+.helpRow{
+  min-height:18px;            /* 줄바꿈 없이도 레이아웃 안정 */
+  margin:2px 2px 8px 2px;
+}
+.msgError{
+  color:#ef4444;              /* red-500 */
+  font-size:.85rem;
+}
+.msgHint{
+  color:#9ca3af;              /* gray-400 */
+  font-size:.85rem;
+}
+
+/* 버튼 비활성화 상태 */
+.loginBtn:disabled{
+  background:#93c5fd;         /* blue-300 */
+  cursor:not-allowed;
+  opacity:.85;
+}
+
+
+
+/* 왼쪽 아이콘 */
+.iconLeft {
+    font-size: 18px;
+    color: #6b7280;
+}
+
+/* 실제 입력창 – 투명&테두리 제거 */
+.input {
+    flex: 1;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #111;
+}
+
+.input::placeholder {
+    color: #9ca3af;
+}
+
+/* 우측 눈 아이콘 버튼 (기본: 눈 감김) */
+.iconRightBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    font-size: 18px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+.iconRightBtn:hover {
+    color: #111;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 420px) {
+    .loginPanel {
+        padding: 36px 20px 28px;
+    }
+}
