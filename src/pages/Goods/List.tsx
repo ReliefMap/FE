@@ -47,6 +47,7 @@ const GoodsList = () => {
             name={goods.name}
             image={goods.image}
             stock={goods.stock}
+            disabled={!time.date || !time.time}
             onReserve={handleReserve}
           />
         ))}

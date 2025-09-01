@@ -1,6 +1,6 @@
 import type { GoodsItemProps } from '../../types/Goods';
 
-const GoodsItem = ({ id, name, image, stock, onReserve }: GoodsItemProps) => {
+const GoodsItem = ({ id, name, image, stock, disabled, onReserve }: GoodsItemProps) => {
   return (
     <div className="w-full rounded-2xl shadow p-4 mb-4 bg-white">
       <div className="flex gap-4">
@@ -18,9 +18,9 @@ const GoodsItem = ({ id, name, image, stock, onReserve }: GoodsItemProps) => {
           onClick={() => onReserve(id)}
           disabled={stock <= 0}
           className={`w-full rounded-lg py-2 font-medium ${
-            stock > 0
-              ? 'bg-blue-500 text-white hover:bg-blue-600'
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+            disabled
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-blue-500 text-white hover:bg-blue-600'
           }`}
         >
           예약하기

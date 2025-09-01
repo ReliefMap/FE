@@ -308,7 +308,7 @@ export default function DateSheet({ open, onClose, onApply, initial }: DateSheet
             onClick={handleConfirm}
             disabled={!selectedDate || !selectedTime}
           >
-            예약하기
+            확인
           </button>
         </div>
       </div>

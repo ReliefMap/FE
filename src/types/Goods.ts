@@ -10,6 +10,7 @@ export type GoodsItemProps = {
   name: string;
   image: string;
   stock: number;
+  disabled: boolean;
   onReserve: (id: number) => void;
 };
 
