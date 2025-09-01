@@ -3,8 +3,11 @@ import GoodsItem from '../../components/goods/GoodsItem';
 import type { GoodsItemType, TimeProps } from '../../types/Goods';
 import DateBar from '../../components/goods/DateBar';
 import DateSheet from '../../components/goods/DateSheet';
+import { useParams } from 'react-router-dom';
 
 const GoodsList = () => {
+  const { storeId } = useParams();
+
   const [goodsList, setGoodsList] = useState<GoodsItemType[]>([]);
   const [time, setTime] = useState<TimeProps>({});
   const [sheetOpen, setSheetOpen] = useState(false);

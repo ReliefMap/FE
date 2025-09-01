@@ -1,16 +1,16 @@
 import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Filter } from 'lucide-react';
 import { loadKakaoMap } from '../../components/map/KakaoMap';
 
-const BottomSheet = ({
-  open,
-  onClose,
-  locationName,
-}: {
+type BottomSheetProps = {
   open: boolean;
   onClose: () => void;
   locationName: string;
-}) => (
+  onNavigate: () => void;
+};
+
+const BottomSheet = ({ open, onClose, locationName, onNavigate }: BottomSheetProps) => (
   <div
     className={`fixed inset-0 z-50 flex justify-center items-end transition ${
       open ? 'visible' : 'invisible'
@@ -26,22 +26,22 @@ const BottomSheet = ({
       className={`w-full bg-white rounded-t-2xl shadow-lg p-4 transform transition-transform duration-300 ${
         open ? 'translate-y-0' : 'translate-y-full'
       }`}
+      onClick={onNavigate}
     >
       <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4" />
       <h2 className="text-lg font-semibold mb-4">{locationName}</h2>
+      <p className="text-sm text-gray-500">탭하면 지점 페이지로 이동</p>
     </div>
   </div>
 );
 
-const FilterSheet = ({
-  open,
-  onClose,
-  onSelect,
-}: {
+type FilterSheetProps = {
   open: boolean;
   onClose: () => void;
   onSelect: (f: string | null) => void;
-}) => {
+};
+
+const FilterSheet = ({ open, onClose, onSelect }: FilterSheetProps) => {
   const filters = ['전체', '식량', '의약품', '생필품'];
   return (
     <div
@@ -81,19 +81,22 @@ const FilterSheet = ({
   );
 };
 
-export default function Goods() {
+const Goods = () => {
+  const navigate = useNavigate();
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
+
   const [open, setOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [locationName, setLocationName] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [selectedStoreId, setSelectedStoreId] = useState<number | null>(null);
 
   const locations = [
-    { lat: 37.5665, lng: 126.978, type: '식량', name: '서울 식량창고' },
-    { lat: 37.567, lng: 126.979, type: '의약품', name: '서울 의약품센터' },
-    { lat: 37.565, lng: 126.977, type: '생필품', name: '서울 생필품보관소' },
+    { storeId: 1, lat: 37.5665, lng: 126.978, type: '식량', name: '서울 식량창고' },
+    { storeId: 2, lat: 37.567, lng: 126.979, type: '의약품', name: '서울 의약품센터' },
+    { storeId: 3, lat: 37.565, lng: 126.977, type: '생필품', name: '서울 생필품보관소' },
   ];
 
   const drawMarkers = (filter: string | null, kakao: typeof window.kakao, map: any) => {
@@ -109,6 +112,7 @@ export default function Goods() {
       marker.setMap(map);
       kakao.maps.event.addListener(marker, 'click', () => {
         setLocationName(loc.name);
+        setSelectedStoreId(loc.storeId);
         setOpen(true);
       });
       markersRef.current.push(marker);
@@ -144,6 +148,12 @@ export default function Goods() {
     drawMarkers(selectedFilter, window.kakao, mapInstanceRef.current);
   }, [selectedFilter]);
 
+  const handleNavigate = () => {
+    if (!selectedStoreId) return;
+    setOpen(false);
+    navigate(`/goods/${selectedStoreId}`);
+  };
+
   return (
     <div className="relative w-full h-screen">
       {/* 상단 바 */}
@@ -161,7 +171,12 @@ export default function Goods() {
       <div ref={mapRef} className="absolute top-16 left-0 w-full bottom-16" />
 
       {/* 바텀 시트 */}
-      <BottomSheet open={open} onClose={() => setOpen(false)} locationName={locationName} />
+      <BottomSheet
+        open={open}
+        onClose={() => setOpen(false)}
+        locationName={locationName}
+        onNavigate={handleNavigate}
+      />
 
       {/* 필터 시트 */}
       <FilterSheet
@@ -171,4 +186,6 @@ export default function Goods() {
       />
     </div>
   );
-}
+};
+
+export default Goods;
