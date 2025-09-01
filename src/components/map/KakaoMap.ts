@@ -13,7 +13,8 @@ export const loadKakaoMap = (): Promise<typeof window.kakao> => {
     }
 
     const script = document.createElement("script");
-    script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=03df585402f446e56df2c3a211f3e2f8&autoload=false";
+    const kakaoKey = import.meta.env.VITE_KAKAO_MAP_KEY; // env에서 키 가져오기
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false`;
     script.async = true;
 
     script.onload = () => {
