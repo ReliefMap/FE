@@ -8,7 +8,7 @@ const DateBar = ({ value, onOpen, onClear }: DateBarProps) => {
     : '날짜, 시간으로 검색';
 
   return (
-    <div className="p-5">
+    <div className="px-4">
       <div className="flex items-center gap-2 w-full">
         <button
           onClick={onOpen}

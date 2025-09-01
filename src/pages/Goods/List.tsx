@@ -3,10 +3,14 @@ import GoodsItem from '../../components/goods/GoodsItem';
 import type { GoodsItemType, TimeProps } from '../../types/Goods';
 import DateBar from '../../components/goods/DateBar';
 import DateSheet from '../../components/goods/DateSheet';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import Topbar from '../../layouts/Topbar';
 
 const GoodsList = () => {
+  /* TODO: API 요청 시 사용 예정 */
   const { storeId } = useParams();
+  const location = useLocation();
+  const storeName = (location.state as { name?: string })?.name;
 
   const [goodsList, setGoodsList] = useState<GoodsItemType[]>([]);
   const [time, setTime] = useState<TimeProps>({});
@@ -30,7 +34,10 @@ const GoodsList = () => {
   };
 
   return (
-    <>
+    <div className="w-full h-full pt-[60px] pb-16">
+      <Topbar>
+        <span className="ml-2 text-lg">{storeName} 물품 목록</span>
+      </Topbar>
       <DateBar value={time} onOpen={() => setSheetOpen(true)} onClear={() => setTime({})} />
       <div className="p-4">
         {goodsList.map((goods) => (
@@ -50,7 +57,7 @@ const GoodsList = () => {
         onClose={() => setSheetOpen(false)}
         onApply={(t: TimeProps) => setTime(t)}
       />
-    </>
+    </div>
   );
 };
 

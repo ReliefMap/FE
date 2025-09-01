@@ -151,7 +151,9 @@ const Goods = () => {
   const handleNavigate = () => {
     if (!selectedStoreId) return;
     setOpen(false);
-    navigate(`/goods/${selectedStoreId}`);
+    navigate(`/goods/${selectedStoreId}`, {
+      state: { name: locationName },
+    });
   };
 
   return (
