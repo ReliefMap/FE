@@ -6,6 +6,7 @@ import Goods from './pages/Goods';
 import Mypage from './pages/Mypage';
 import Login from './pages/Auth/login';
 import Signup from './pages/Auth/signup';
+import GoodsList from './pages/Goods/List';
 
 const Router = () => {
   return (
@@ -15,7 +16,10 @@ const Router = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/goods" element={<Goods />} />
+        <Route path="goods">
+          <Route index element={<Goods />} />
+          <Route path=":storeId" element={<GoodsList />} />
+        </Route>
         <Route path="/mypage" element={<Mypage />} />
       </Route>
     </Routes>
