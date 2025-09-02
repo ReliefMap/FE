@@ -25,6 +25,7 @@ const GoodsList = () => {
   }, []);
 
   const handleReserve = async (id: number) => {
+    if (!time.date || !time.time) alert('예약할 날짜와 시간을 선택해주세요!');
     try {
       alert(`${id}번 물품 예약 완료!`);
     } catch (error) {
